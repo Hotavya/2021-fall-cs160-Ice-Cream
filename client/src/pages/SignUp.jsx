@@ -33,7 +33,7 @@ const SignUp = () => {
             <label htmlFor="password2" className="form-label">
               Confirm Password
             </label>
-            <input id="password2" type="password2" name="password2" className="form-input" placeholder='Re-enter your password' />
+            <input id="password2" type="password" name="password2" className="form-input" placeholder='Re-enter your password' />
           </div>
 
           <button className="form-input-btn" type='submit' >
