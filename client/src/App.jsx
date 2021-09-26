@@ -1,10 +1,9 @@
 import React from 'react';
-import './App.css';
+import './app.css';
 import SignUp from './pages/SignUp';
 
-
 function App() {
-  return <SignUp/>;
+  return <SignUp />;
 }
 
 export default App;

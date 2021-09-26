@@ -1,8 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import cors from 'cors';
 
 import authRoutes from './routes/auth.route.js';
+
+// connect to database
+import './database/index.js';
 
 dotenv.config();
 
@@ -14,18 +17,11 @@ app.use(express.json());
 // parse urlencoded request body.
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  // Connect to database.
-  mongoose
-    .connect(process.env.DATABASE, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => console.log('successfully connected to db'))
-    .catch((error) => console.log(error));
-
   console.log(`Server is running on port: ${PORT}`);
 });
 
