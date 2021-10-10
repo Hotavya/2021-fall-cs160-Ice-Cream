@@ -83,29 +83,27 @@ const Login = () => {
           <form className="form" onSubmit={handleSubmit}>
             {/* <h1> Welcome to Tracker!</h1> */}
             <div className="form-inputs">
-              <label htmlFor="email" className="form-label">
-                Username or Email address
+              <label htmlFor="username" className="form-label">
               </label>
               <input
-                id="email"
-                type="email"
-                name="email"
+                id="username"
+                type="text"
+                name="username"
                 className="form-input"
-                placeholder="Enter your username or email"
-                onChange={handleFormUpdate('email')}
+                placeholder="Username"
+                onChange={handleFormUpdate('username')}
               />
             </div>
 
             <div className="form-inputs">
               <label htmlFor="password" className="form-label">
-                Password
               </label>
               <input
                 id="password"
                 type="password"
                 name="password"
                 className="form-input"
-                placeholder="Enter your password"
+                placeholder="Password"
                 onChange={handleFormUpdate('password')}
               />
             </div>

@@ -186,7 +186,7 @@ p {
 .form input {
   width: 300px;
   padding: 10px;
-  margin: 5px auto;
+  margin: 0 auto;
   display: block;
   border: none;
   background: #fff;
@@ -194,7 +194,7 @@ p {
 }
 
 .form-inputs {
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 .form-input-btn {
