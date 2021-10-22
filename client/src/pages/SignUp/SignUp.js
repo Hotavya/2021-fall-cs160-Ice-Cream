@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../backendConnection';
+import axios from '../../backendConnection';
 import './SignUp.css';
 
 const SignUp = () => {

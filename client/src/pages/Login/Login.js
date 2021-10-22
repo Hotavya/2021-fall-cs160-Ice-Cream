@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../backendConnection';
+import axios from '../../backendConnection';
 import './Login.css';
 
 const Login = () => {
@@ -113,7 +113,7 @@ const Login = () => {
               Log In
             </button>
             <span className="form-input-login">
-              Don't have an acoount? <a href="#">Sign up</a>
+              Don't have an acount? <a href="#">Sign up</a>
             </span>
           </form>
         </div>
