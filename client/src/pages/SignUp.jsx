@@ -47,16 +47,18 @@ const SignUp = () => {
     }
   };
 
+
   return (
     <body>
       <nav id="navbar">
+        <img src="../../logo.png" alt="favicon" className="navbar__favicon" />
         <div className="navbar__logo">
           {/* <!-- <i class="fas fa-bible"></i> -->
           <!-- <a href="#">Solbi</a> - */}
           Tracker |  
            
 
-          <span className="navbar__logo__current">  Sign In</span>
+          <span className="navbar__logo__current">  Sign Up</span>
         </div>
 
         {/* <ul className="navbar__menu">
@@ -72,74 +74,73 @@ const SignUp = () => {
           <i className="fas fa-bars"></i>
         </button>
     </nav>
+
     <section id="form">
-        <div className="form-container">
-            <form className="form" onSubmit={handleSubmit}>
-              {/* <h1> Welcome to Tracker!</h1> */}
-              <div className="form-inputs">
-                <label htmlFor="username" className="form-label">
-                  Username
-                </label>
-                <input
-                  id="username"
-                  type="text"
-                  name="username"
-                  className="form-input"
-                  placeholder="Enter your username"
-                  onChange={handleFormUpdate('username')}
-                />
-              </div>
+      <img src="../../logo.png" alt="face" className="face_image" />
+      <h2>Sign Up</h2>
+      <div className="form-container">
+          <form className="form" onSubmit={handleSubmit}>
+            {/* <h1> Welcome to Tracker!</h1> */}
+            <div className="form-inputs">
+              <label htmlFor="username" className="form-label">
+              </label>
+              <input
+                id="username"
+                type="text"
+                name="username"
+                className="form-input"
+                placeholder="Username"
+                onChange={handleFormUpdate('username')}
+              />
+            </div>
 
-              <div className="form-inputs">
-                <label htmlFor="email" className="form-label">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  className="form-input"
-                  placeholder="Enter your email"
-                  onChange={handleFormUpdate('email')}
-                />
-              </div>
+            <div className="form-inputs">
+              <label htmlFor="email" className="form-label">
+              </label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                className="form-input"
+                placeholder="Email"
+                onChange={handleFormUpdate('email')}
+              />
+            </div>
 
-              <div className="form-inputs">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  className="form-input"
-                  placeholder="Enter your password"
-                  onChange={handleFormUpdate('password')}
-                />
-              </div>
+            <div className="form-inputs">
+              <label htmlFor="password" className="form-label">
+              </label>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                className="form-input"
+                placeholder="Password"
+                onChange={handleFormUpdate('password')}
+              />
+            </div>
 
-              <div className="form-inputs">
-                <label htmlFor="password2" className="form-label">
-                  Confirm Password
-                </label>
-                <input
-                  id="password2"
-                  type="password"
-                  name="password2"
-                  className="form-input"
-                  placeholder="Re-enter your password"
-                  onChange={handleFormUpdate('password2')}
-                />
-              </div>
+            <div className="form-inputs">
+              <label htmlFor="password2" className="form-label">
+              </label>
+              <input
+                id="password2"
+                type="password"
+                name="password2"
+                className="form-input"
+                placeholder="Confirm Password"
+                onChange={handleFormUpdate('password2')}
+              />
+            </div>
 
-              <button className="form-input-btn" type="submit">
-                Sign Up
-              </button>
-              <span className="form-input-login">
-                Already have an account? Login <a href="#">here</a>
-              </span>
-            </form>
-        </div>
+            <button className="form-input-btn" type="submit">
+              Sign Up
+            </button>
+            <span className="form-input-login">
+              Already have an account? <a href="#"> Login here</a>
+            </span>
+          </form>
+      </div>
 
     </section>
 

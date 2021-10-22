@@ -57,7 +57,7 @@ const Login = () => {
           Tracker |
           
 
-          <span className="navbar__logo__current"> Sign In</span>
+          <span className="navbar__logo__current"> Log In</span>
         </div>
 
         {/* <ul className="navbar__menu">
@@ -73,8 +73,8 @@ const Login = () => {
           <i className="fas fa-bars"></i>
         </button>
       </nav>
+
       <section id="header">
-        
       </section>
       <section id="form">
         <img src="../../logo.png" alt="face" className="face_image" />
