@@ -1,16 +1,39 @@
 import mongoose from 'mongoose';
 
-//TODO:This is just for feasability test, revise this.
-const userAccountSchema = mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
+/* User account schema */
+const userAccountSchema = mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    bio: {
+      type: String,
+    },
+    lastActive: {
+      type: Date,
+      default: Date.now(),
+    },
+    profession: {
+      type: String,
+    },
   },
-  email: {
-    type: String,
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
 const UserAccount = mongoose.model('UserAccount', userAccountSchema);
 export default UserAccount;
