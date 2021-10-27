@@ -42,7 +42,7 @@ userAccountSchema.pre('save', async function(next) {
   } catch (error) {
     next(error);
   }
-}
+})
                       
 const UserAccount = mongoose.model('UserAccount', userAccountSchema);
 export default UserAccount;
