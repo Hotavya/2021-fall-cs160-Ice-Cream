@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
+<<<<<<< HEAD
 import bcrypt from 'bcrypt'
 
+=======
+>>>>>>> Sign In API
 /* User account schema */
 const userAccountSchema = mongoose.Schema(
   {
@@ -12,6 +15,7 @@ const userAccountSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+<<<<<<< HEAD
     firstName: {
       type: String,
     },
@@ -31,6 +35,23 @@ const userAccountSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
+=======
+  },
+  { timestamps: true }
+);
+
+// Hash user password before storing in database
+userAccountSchema.pre('save', async function (next) {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
+  }
+})
+>>>>>>> Sign In API
 
 // Hash user password before storing in database
 userAccountSchema.pre('save', async function(next) {
