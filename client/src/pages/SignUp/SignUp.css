@@ -23,7 +23,7 @@
 
   /* Font size */
   --font-large: 48px;
-  --font-medium: 28px;
+  --font-medium: 38px;
   --font-regular: 18px;
   --font-small: 16px;
   --font-micro: 14px;
@@ -111,13 +111,14 @@ p {
   /* position: fixed; */
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: normal;
   background-color: #2C9BF0;
   /* background-color: transparent; */
   align-items: center;
   color: var(--color-white);
   padding: 20px;
 }
+
 #navbar.navbar--dark {
   background-color: #0f0f0f;
   padding: 4px;
@@ -125,6 +126,12 @@ p {
   /* z-index: 2; */
 }
 
+.navbar__favicon {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+
+}
 .navbar__menu {
   display: flex;
   margin-right: 12px;
@@ -134,7 +141,9 @@ p {
 .navbar__logo {
   font-size: var(--font-medium);
   font-weight: var(--weight-semi-bold);
+  margin-left: 10px;;
 }
+
 .navbar__logo__current {
   font-size: var(--font-small);
 }
@@ -159,22 +168,40 @@ p {
   /* background-color: var(--color-primary); */
   /* padding: 40px; */
   text-align: center;
-  padding: 100px 30px;
+  padding: 50px 30px;
   /* background-color: var(--color-pink); */
 }
+
+#form h2 {
+  color: #696BEE;
+  margin-bottom: 30px;
+}
+
+.face_image {
+  width: 100px;
+  height: 100px;
+  /* border-radius: 50%; */
+}
+
 .form input {
-  width: 200px;
+  width: 300px;
   padding: 10px;
-  margin: 5px auto;
+  margin: 0 auto;
   display: block;
   border: none;
   background: #fff;
   border-radius: 2px;
 }
+
+.form-inputs {
+  /* margin: 5px; */
+}
+
 .form-input-btn {
-  width: 200px;
-  padding: 10px;
+  width: 300px;
+  padding: 5px;
   margin: 20px auto;
+  margin-top: 50px;
 
   border-radius: 2px;
   background: #696BEE;
@@ -182,7 +209,25 @@ p {
   border: none;
   color: #fff;
   font-size: 1rem;
-  display:block;
+  display: block;
+}
+
+.form-label {
+  display: inline-block;
+  /* font-size: 0.8rem; */
+  margin-bottom: 6px;
+  /* text-align: left; */
+  color: #828180;
+}
+
+.form-input-login {
+  margin-top: 10px;
+  color: #828180;
+  text-align: center;
+}
+
+.form-input-login a {
+  color: #696BEE;
 }
 /* 
 .form-container {

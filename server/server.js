@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import authRoutes from './routes/auth.route.js';
+import jobboardRoutes from './routes/jobboard.route.js';
+
 
 // connect to database
 import './database/index.js';
@@ -19,10 +21,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 2000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/jobboard', jobboardRoutes);

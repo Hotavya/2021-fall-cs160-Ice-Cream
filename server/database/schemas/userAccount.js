@@ -12,9 +12,25 @@ const userAccountSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    bio: {
+      type: String,
+    },
+    lastActive: {
+      type: Date,
+      default: Date.now(),
+    },
+    profession: {
+      type: String,
+    },
   },
   { timestamps: true }
-  );
+);
 
 // Hash user password before storing in database
 userAccountSchema.pre('save', async function(next) {
@@ -26,7 +42,7 @@ userAccountSchema.pre('save', async function(next) {
   } catch (error) {
     next(error);
   }
-})
-
+}
+                      
 const UserAccount = mongoose.model('UserAccount', userAccountSchema);
 export default UserAccount;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../backendConnection';
+import axios from '../../backendConnection';
 import './Login.css';
 
 const Login = () => {
@@ -57,7 +57,7 @@ const Login = () => {
           Tracker |
           
 
-          <span className="navbar__logo__current"> Sign In</span>
+          <span className="navbar__logo__current"> Log In</span>
         </div>
 
         {/* <ul className="navbar__menu">
@@ -73,8 +73,8 @@ const Login = () => {
           <i className="fas fa-bars"></i>
         </button>
       </nav>
+
       <section id="header">
-        
       </section>
       <section id="form">
         <img src="../../logo.png" alt="face" className="face_image" />
@@ -113,7 +113,7 @@ const Login = () => {
               Log In
             </button>
             <span className="form-input-login">
-              Don't have an acoount? <a href="#">Sign up</a>
+              Don't have an acount? <a href="#">Sign up</a>
             </span>
           </form>
         </div>
