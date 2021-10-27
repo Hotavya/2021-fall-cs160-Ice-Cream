@@ -1,11 +1,7 @@
-import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import jobBoardSchema from '../database/schemas/jobBoard.js';
 dotenv.config();
-
-var app = express();
-var db, collection
 
 export const jobboard = async (req, res) => {
 
@@ -22,9 +18,6 @@ export const jobboard = async (req, res) => {
                 return res.status(404).json({
                     message: "jobboard not found"});
               } 
-
-
-              
             })
             .catch(err => {
                 console.log(err);
