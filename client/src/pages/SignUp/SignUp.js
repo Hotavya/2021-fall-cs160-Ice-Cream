@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import axios from '../../backendConnection';
 import './SignUp.css';
 
@@ -47,21 +49,17 @@ const SignUp = () => {
     }
   };
 
-
   return (
     <body>
-      <nav id="navbar">
+      {/* <nav id="navbar">
         <img src="../../logo.png" alt="favicon" className="navbar__favicon" />
-        <div className="navbar__logo">
-          {/* <!-- <i class="fas fa-bible"></i> -->
+        <div className="navbar__logo"> */}
+      {/* <!-- <i class="fas fa-bible"></i> -->
           <!-- <a href="#">Solbi</a> - */}
-          Tracker |  
-           
-
-          <span className="navbar__logo__current">  Sign Up</span>
-        </div>
-
-        {/* <ul className="navbar__menu">
+      {/* Tracker | */}
+      {/* <span className="navbar__logo__current">  Sign Up</span>
+        </div> */}
+      {/* <ul className="navbar__menu">
           <li className="navbar__menu__item active" data-link="#home">Home</li>
           <li className="navbar__menu__item" data-link="#about">About</li>
           <li className="navbar__menu__item" data-link="#skills">Skills</li>
@@ -69,21 +67,19 @@ const SignUp = () => {
           <li className="navbar__menu__item" data-link="#testimonial">Testimonial</li>
           <li className="navbar__menu__item" data-link="#contact">Contact</li>
         </ul> */}
-        {/* <!-- Toggle button --> */}
-        <button className="navbar__toggle_btn">
+      {/* <!-- Toggle button --> */}
+      {/* <button className="navbar__toggle_btn">
           <i className="fas fa-bars"></i>
         </button>
-    </nav>
-
-    <section id="form">
-      <img src="../../logo.png" alt="face" className="face_image" />
-      <h2>Sign Up</h2>
-      <div className="form-container">
+    </nav> */}
+      <section id="form">
+        <img src="../../logo.png" alt="face" className="face_image" />
+        <h2>Sign Up</h2>
+        <div className="form-container">
           <form className="form" onSubmit={handleSubmit}>
             {/* <h1> Welcome to Tracker!</h1> */}
             <div className="form-inputs">
-              <label htmlFor="username" className="form-label">
-              </label>
+              <label htmlFor="username" className="form-label"></label>
               <input
                 id="username"
                 type="text"
@@ -95,8 +91,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-inputs">
-              <label htmlFor="email" className="form-label">
-              </label>
+              <label htmlFor="email" className="form-label"></label>
               <input
                 id="email"
                 type="email"
@@ -108,8 +103,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-inputs">
-              <label htmlFor="password" className="form-label">
-              </label>
+              <label htmlFor="password" className="form-label"></label>
               <input
                 id="password"
                 type="password"
@@ -121,8 +115,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-inputs">
-              <label htmlFor="password2" className="form-label">
-              </label>
+              <label htmlFor="password2" className="form-label"></label>
               <input
                 id="password2"
                 type="password"
@@ -137,16 +130,12 @@ const SignUp = () => {
               Sign Up
             </button>
             <span className="form-input-login">
-              Already have an account? <a href="#"> Login here</a>
+              Already have an account? <Link to="login"> Login here</Link>
             </span>
           </form>
-      </div>
-
-    </section>
-
- 
- 
-  </body>
+        </div>
+      </section>
+    </body>
   );
 };
 
