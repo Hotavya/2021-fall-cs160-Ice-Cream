@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import InfoIcon from '@mui/icons-material/Info';
 
+//TODO: replace this with calls to the backend once we have actual job applications
 const applications = [
   {
     id: 1,
@@ -34,6 +35,8 @@ const applications = [
     status: 'Applied',
   },
 ];
+
+/* Display the job applications of a job board */
 const BoardApplications = () => {
   return (
     <section style={{ margin: '50px' }}>
