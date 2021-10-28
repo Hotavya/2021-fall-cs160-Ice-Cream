@@ -2,7 +2,8 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import ApplicationDisplay from './applicationList/applicationsDisplay';
+import BoardApplications from '../../components/jobBoard/boardApplications';
+import Button from '@mui/material/Button';
 
 const JobBoard = () => {
   const [value, setValue] = React.useState(0);
@@ -19,7 +20,7 @@ const JobBoard = () => {
           <Tab label="Statistics" />
         </Tabs>
       </Box>
-      <ApplicationDisplay />
+      <BoardApplications />
     </main>
   );
 };
