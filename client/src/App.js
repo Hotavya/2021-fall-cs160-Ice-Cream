@@ -3,7 +3,7 @@ import './app.css';
 import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import NavBar from './components/navbar/navbar';
-import Home from './pages/HomePage';
+import Home from './pages/jobBoard/jobBoard';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route></Route>
       </Router>
     </main>
   );
