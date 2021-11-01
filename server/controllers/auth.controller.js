@@ -37,6 +37,7 @@ export const signup = async (req, res) => {
       await newUserAccount.save();
       //res.redirect('/auth/signin');
     } catch (error) {
+      console.log(error);
       return res.status(500).json({
         error: 'Internal Server Error',
         message: 'Account not created. Something went wrong in the server'
@@ -48,15 +49,15 @@ export const signup = async (req, res) => {
 
 // Sign in
 export const signin = async (req, res) => {
-  UserAccount.find({ email: req.body.email })
+  UserAccount.findOne({ email: req.body.email })
     .exec()
     .then(user => {
-      if (user.length < 1) {
+      if (typeof user === undefined) {
         return res.status(401).json({
           message: "Auth failed"
         });
       }
-      bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
         if (err) {
           return res.status(401).json({
             message: "Auth failed"
@@ -65,8 +66,8 @@ export const signin = async (req, res) => {
         if (result) {
           const token = jwt.sign(
             {
-              email: user[0].email,
-              userId: user[0]._id
+              email: user.email,
+              userId: user._id
             },
             process.env.JWT_KEY,
             {
