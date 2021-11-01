@@ -37,7 +37,6 @@ export const signup = async (req, res) => {
       await newUserAccount.save();
       //res.redirect('/auth/signin');
     } catch (error) {
-      console.log(error);
       return res.status(500).json({
         error: 'Internal Server Error',
         message: 'Account not created. Something went wrong in the server'
