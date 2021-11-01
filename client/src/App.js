@@ -1,22 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './app.css';
 import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import NavBar from './components/navbar/navbar';
 import Home from './pages/HomePage';
+import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  useEffect(() => {
+    setIsLoggedIn(Cookies.get('token') != null);
+  }, [isLoggedIn]);
+
+  const registerUser = (token) => {
+    Cookies.set('token', token);
+    setIsLoggedIn(true);
+  };
+
+  const logoutUser = () => {
+    Cookies.remove('token');
+    setIsLoggedIn(false);
+  };
+
   return (
     <main>
       <Router>
-        <NavBar />
-
+        <NavBar isLoggedIn={isLoggedIn} logoutUser={logoutUser} />
         <Route exact path="/signup">
-          <Signup />
+          <Signup saveUserToken={registerUser} />
         </Route>
         <Route exact path="/login">
-          <Login />
+          <Login saveUserToken={registerUser} />
         </Route>
         <Route exact path="/">
           <Home />
