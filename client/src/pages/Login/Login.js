@@ -1,55 +1,53 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from '../../backendConnection';
+import Alert from '@mui/material/Alert';
+
+import { useHistory } from 'react-router';
+
 import './Login.css';
 
-const Login = () => {
+const Login = ({ saveUserToken }) => {
   const [formValues, setFormValues] = useState({
-    username: '',
     email: '',
     password: '',
-    password2: '',
   });
+  // Keeps track of error message to display to user when the submit the form
+  const [error, setError] = useState('');
+
+  // Used to change the url/history
+  const history = useHistory();
 
   const handleFormUpdate = (param) => (event) => {
     setFormValues({ ...formValues, [param]: event.target.value });
+
+    // Remove error message when user is typing
+    if (error) setError('');
   };
 
   // submit form
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (
-      !formValues.username ||
-      !formValues.email ||
-      !formValues.password ||
-      !formValues.password2
-    ) {
-      alert('A field cannot be empty');
-      return;
-    }
-
-    if (formValues.password !== formValues.password2) {
-      alert('Passwords do not match');
+    if (!formValues.email || !formValues.password) {
+      setError('A field cannot be empty');
       return;
     }
 
     try {
-      const response = await axios.post('/auth/signup', {
+      const response = await axios.post('/auth/signin', {
         email: formValues.email,
-        username: formValues.username,
         password: formValues.password,
-        password2: formValues.password2,
       });
-      // alert(response.data);
-      console.log(response.data.message);
+      // Save user token
+      saveUserToken(response.data.token);
+      history.push('/');
     } catch (error) {
-      // alert(error.message);
-      console.log(error);
+      setError(error.message);
     }
   };
 
   return (
-    <body>
+    <div>
       {/* <nav id="navbar">
         <img src="../../logo.png" alt="favicon" className="navbar__favicon" />
         <div className="navbar__logo"> */}
@@ -79,14 +77,14 @@ const Login = () => {
           <form className="form" onSubmit={handleSubmit}>
             {/* <h1> Welcome to Tracker!</h1> */}
             <div className="form-inputs">
-              <label htmlFor="username" className="form-label"></label>
+              <label htmlFor="email" className="form-label"></label>
               <input
-                id="username"
-                type="text"
-                name="username"
+                id="email"
+                type="email"
+                name="email"
                 className="form-input"
-                placeholder="Username"
-                onChange={handleFormUpdate('username')}
+                placeholder="email"
+                onChange={handleFormUpdate('email')}
               />
             </div>
 
@@ -111,7 +109,8 @@ const Login = () => {
           </form>
         </div>
       </section>
-    </body>
+      {error && <Alert severity="error">{error}</Alert>}
+    </div>
   );
 };
 
