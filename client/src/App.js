@@ -37,6 +37,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route></Route>
       </Router>
     </main>
   );
