@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import JobApplicationSchema from './jobApplication.js';
 
-/* Schema for job board. */
+/* Schema for job board; it is nested inside the userAccount model */
 const jobBoardSchema = mongoose.Schema(
   {
     title: {
@@ -19,6 +19,4 @@ const jobBoardSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-
-const JobBoard = mongoose.model('JobBoard', jobBoardSchema);
-export default JobBoard;
+export default jobBoardSchema;
