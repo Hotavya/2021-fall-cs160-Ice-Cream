@@ -40,7 +40,7 @@ const SignUp = ({ saveUserToken }) => {
     }
 
     if (formValues.password !== formValues.password2) {
-      setError('Passords are not matching');
+      setError('Passwords are not matching!');
       return;
     }
 
@@ -123,7 +123,11 @@ const SignUp = ({ saveUserToken }) => {
           </span>
         </form>
       </div>
-      {error && <Alert severity="error">{error}</Alert>}
+      {error && (
+        <Alert severity="error" data-testid="alert-element">
+          {error}
+        </Alert>
+      )}
     </section>
   );
 };
