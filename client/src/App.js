@@ -1,11 +1,46 @@
-import React from 'react';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import './app.css';
 import Login from './pages/Login/Login';
-import SignUp from './pages/SignUp/SignUp';
+import Signup from './pages/SignUp/SignUp';
+import NavBar from './components/navbar/navbar';
+import Home from './pages/HomePage';
+import Cookies from 'js-cookie';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
-  // return <SignUp></SignUp>;
-  return <Login></Login>
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  useEffect(() => {
+    setIsLoggedIn(Cookies.get('token') != null);
+  }, [isLoggedIn]);
+
+  const registerUser = (token) => {
+    Cookies.set('token', token);
+    setIsLoggedIn(true);
+  };
+
+  const logoutUser = () => {
+    Cookies.remove('token');
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <main>
+      <Router>
+        <NavBar isLoggedIn={isLoggedIn} logoutUser={logoutUser} />
+        <Route exact path="/signup">
+          <Signup saveUserToken={registerUser} />
+        </Route>
+        <Route exact path="/login">
+          <Login saveUserToken={registerUser} />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route></Route>
+      </Router>
+    </main>
+  );
 }
 
 export default App;

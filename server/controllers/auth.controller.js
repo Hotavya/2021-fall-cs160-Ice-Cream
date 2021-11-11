@@ -9,7 +9,7 @@ export const signup = async (req, res) => {
   // Check if user left email or password field empty
   if (!email || !password) {
     return res.status(400).json({
-      message: "Email and password are required"
+      message: 'Email and password are required',
     });
   }
   // Check if email is already used by an account
@@ -27,7 +27,7 @@ export const signup = async (req, res) => {
   // Check if user password is 8 or more characters in length
   else if (password.length < 8) {
     return res.status(400).json({
-      message: "Password must be at least 8 characters in length"
+      message: 'Password must be at least 8 characters in length',
     });
   }
   // Create Account
@@ -39,7 +39,7 @@ export const signup = async (req, res) => {
     } catch (error) {
       return res.status(500).json({
         error: 'Internal Server Error',
-        message: 'Account not created. Something went wrong in the server'
+        message: 'Account not created. Something went wrong in the server',
       });
     }
     return res.status(200).send({ message: 'Account Successfully Created' });
