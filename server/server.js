@@ -29,3 +29,4 @@ app.listen(PORT, () => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/jobboard', jobboardRoutes);
+
