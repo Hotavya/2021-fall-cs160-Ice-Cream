@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt'
-
 /* User account schema */
 const userAccountSchema = mongoose.Schema(
   {
@@ -33,8 +32,8 @@ const userAccountSchema = mongoose.Schema(
 );
 
 // Hash user password before storing in database
-userAccountSchema.pre('save', async function(next) {
-  try{
+userAccountSchema.pre('save', async function (next) {
+  try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(this.password, salt);
     this.password = hashedPassword;
@@ -43,6 +42,6 @@ userAccountSchema.pre('save', async function(next) {
     next(error);
   }
 })
-                      
+
 const UserAccount = mongoose.model('UserAccount', userAccountSchema);
 export default UserAccount;
