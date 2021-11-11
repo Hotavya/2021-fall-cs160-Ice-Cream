@@ -1,5 +1,5 @@
 import React from 'react';
-import SignupPage from './SignUp';
+import SignupPage from '../SignUp';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
