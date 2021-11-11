@@ -106,6 +106,9 @@ describe('signup tests', () => {
     expect(alert.textContent).toEqual('Passwords are not matching!');
   });
 
+  //TODO: Add submit form test
+  it('submits form when form is valid and button clicked', () => {});
+
   const fillForm = () => {
     userEvent.type(usernameInput, 'jonathan');
     userEvent.type(emailInput, 'jonathan@gmail.com');
