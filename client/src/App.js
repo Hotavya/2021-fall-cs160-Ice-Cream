@@ -36,8 +36,8 @@ function App() {
           <Login saveUserToken={registerUser} />
         </Route>
         <Route exact path="/">
-          {/* <Home /> */}
-          <JobApplication></JobApplication>
+          <Home />
+          {/* <JobApplication></JobApplication> */}
         </Route>
         <Route></Route>
       </Router>

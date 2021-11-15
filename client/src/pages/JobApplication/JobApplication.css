@@ -196,7 +196,7 @@ p {
   display: block;
   border: none;
   background: #fff;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 .form-input {
     width: 300px;
@@ -205,7 +205,7 @@ p {
     display: block;
     border: none;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 .form textarea{
     /* display: flex; */
