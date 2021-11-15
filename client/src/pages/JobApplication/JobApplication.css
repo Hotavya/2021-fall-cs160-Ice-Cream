@@ -164,18 +164,24 @@ p {
   transition: all var(--animation-duration) ease-in;
 }
 
+
+
 #form {
   /* background-color: var(--color-primary); */
   /* padding: 40px; */
   text-align: center;
   padding: 50px 30px;
+  /* display: flex; */
+  /* margin-top: 50px; */
   /* background-color: var(--color-pink); */
 }
 
 #form h2 {
-  color: #696BEE;
+  color: #1976D2;
   margin-bottom: 30px;
 }
+
+
 
 .face_image {
   width: 100px;
@@ -201,9 +207,27 @@ p {
     background: #fff;
     border-radius: 2px;
 }
+.form textarea{
+    /* display: flex; */
+    width: 300px;
+    height: 150px;
+}
+.form__all {
+    display:flex;
+    justify-content: center;
+    /* align-items: center; */
+    
+    
+}
+.form__left {
+    margin-right: 30px;
+}
 
+.form__right {
+    margin-right: 30px;
+}
 .form-inputs {
-  /* margin: 5px; */
+
 }
 
 .form-input-btn {
@@ -224,9 +248,10 @@ p {
 .form-label {
   display: inline-block;
   /* font-size: 0.8rem; */
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   /* text-align: left; */
-  color: #828180;
+  color: var(--color-black);
+  margin-top: 12px;
 }
 
 .form-input-login {

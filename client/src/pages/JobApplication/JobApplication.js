@@ -62,128 +62,147 @@ const JobApplication = ({ saveUserToken }) => {
 
   return (
     <section id="form">
-      <img src="../../logo.png" alt="face" className="face_image" />
-      <h2>Job Application</h2>
+      {/* <img src="../../logo.png" alt="face" className="face_image" /> */}
+      <h2 className="title">Job Application</h2>
       <div className="form-container">
         <form className="form" onSubmit={handleSubmit}>
           {/* <h1> Welcome to Tracker!</h1> */}
-          <div className="form-inputs">
-            <label htmlFor="job-title" className="form-label">Job Title</label>
-            <input
-              id="job-title"
-              type="text"
-              name="job-title"
-              className="form-input"
-              placeholder="Job Title"
-              onChange={handleFormUpdate('job-title')}
-            />
-          </div>
-          <div className="form-inputs">
-            <label htmlFor="company" className="form-label">Company</label>
-            <input
-              id="company"
-              type="text"
-              name="company"
-              className="form-input"
-              placeholder="Company"
-              onChange={handleFormUpdate('company')}
-            />
-          </div>
-          <div className="form-inputs">
-            <label htmlFor="company-website" className="form-label">Company Website</label>
-            <input
-              id="company-website"
-              type="text"
-              name="company-website"
-              className="form-input"
-              placeholder="Company Website"
-              onChange={handleFormUpdate('company-website')}
-            />
-          </div>
-          <div className="form-inputs">
-            <label htmlFor="postURL" className="form-label">Post URL</label>
-            <input
-              id="postURL"
-              type="text"
-              name="postURL"
-              className="form-input"
-              placeholder="Post URL"
-              onChange={handleFormUpdate('postURL')}
-            />
-          </div>
 
-          <div className="form-inputs">
-            <label htmlFor="status" className="form-label">Status</label>
-            <select
-                id="status"
-                name="status"
-                className="form-input"
-                placeholder="Status"
-                onChange={handleFormUpdate('status')}
-            >
-                <option value="wishlist">Wishlist</option>
-                <option value="applied">Applied</option>
-                <option value="interviewing">Interviewing</option>
-                <option value="rejected">Rejected</option>
-                <option value="offer">Offer</option>
-            </select>
-          </div>
+          <div className="form__all">
+            <div className="form__left">
+                <div className="form-inputs">
+                    <label htmlFor="job-title" className="form-label">Job Title</label>
+                    <input
+                    id="job-title"
+                    type="text"
+                    name="job-title"
+                    className="form-input"
+                    placeholder="Job Title"
+                    onChange={handleFormUpdate('job-title')}
+                    />
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="company" className="form-label">Company</label>
+                    <input
+                    id="company"
+                    type="text"
+                    name="company"
+                    className="form-input"
+                    placeholder="Company"
+                    onChange={handleFormUpdate('company')}
+                    />
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="company-website" className="form-label">Company Website</label>
+                    <input
+                    id="company-website"
+                    type="text"
+                    name="company-website"
+                    className="form-input"
+                    placeholder="Company Website"
+                    onChange={handleFormUpdate('company-website')}
+                    />
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="postURL" className="form-label">Post URL</label>
+                    <input
+                    id="postURL"
+                    type="text"
+                    name="postURL"
+                    className="form-input"
+                    placeholder="Post URL"
+                    onChange={handleFormUpdate('postURL')}
+                    />
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="date-applied" className="form-label">Date Applied</label>
+                    <input
+                    id="date-applied"
+                    type="date"
+                    name="date-applied"
+                    className="form-input"
+                    placeholder="Date Applied"
+                    onChange={handleFormUpdate('date-applied')}
+                    />
+                </div>
+            </div>
 
-          <div className="form-inputs">
-            <label htmlFor="job-description" className="form-label">Job description</label>
-            <textarea
-              id="job-description"
-              type="text"
-              name="job-description"
-              className="form-input"
-              placeholder="Job description"
-              onChange={handleFormUpdate('job-description')}
-            >
-            </textarea>
-          </div>
+            
+            <div className="form__right">
+                <div className="form-inputs">
+                    <label htmlFor="status" className="form-label">Status</label>
+                    <select
+                        id="status"
+                        name="status"
+                        className="form-input"
+                        placeholder="Status"
+                        onChange={handleFormUpdate('status')}
+                    >
+                        <option value="wishlist">Wishlist</option>
+                        <option value="applied">Applied</option>
+                        <option value="interviewing">Interviewing</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="offer">Offer</option>
+                    </select>
+                </div>
 
-          <div className="form-inputs">
-            <label htmlFor="email" className="form-label"></label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              className="form-input"
-              placeholder="Email"
-              onChange={handleFormUpdate('email')}
-            />
-          </div>
+                <div className="form-inputs">
+                    <label htmlFor="job-description" className="form-label">Job description</label>
+                    <textarea
+                    id="job-description"
+                    type="text"
+                    name="job-description"
+                    className="form-input"
+                    placeholder="Job description"
+                    onChange={handleFormUpdate('job-description')}
+                    >
+                    </textarea>
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="note" className="form-label">Note</label>
+                    <textarea
+                    id="note"
+                    type="text"
+                    name="note"
+                    className="form-input"
+                    placeholder="Note"
+                    onChange={handleFormUpdate('note')}
+                    >
+                    </textarea>
+                </div>
+            </div>
 
-          <div className="form-inputs">
-            <label htmlFor="password" className="form-label"></label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              className="form-input"
-              placeholder="Password"
-              onChange={handleFormUpdate('password')}
-            />
-          </div>
-
-          <div className="form-inputs">
-            <label htmlFor="password2" className="form-label"></label>
-            <input
-              id="password2"
-              type="password"
-              name="password2"
-              className="form-input"
-              placeholder="Confirm Password"
-              onChange={handleFormUpdate('password2')}
-            />
+            {/* <div className="form__third">
+                <div className="form-inputs">
+                    <label htmlFor="job-description" className="form-label">Job description</label>
+                    <textarea
+                    id="job-description"
+                    type="text"
+                    name="job-description"
+                    className="form-input"
+                    placeholder="Job description"
+                    onChange={handleFormUpdate('job-description')}
+                    >
+                    </textarea>
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="note" className="form-label">Note</label>
+                    <textarea
+                    id="note"
+                    type="text"
+                    name="note"
+                    className="form-input"
+                    placeholder="Note"
+                    onChange={handleFormUpdate('note')}
+                    >
+                    </textarea>
+                </div>
+            </div> */}
           </div>
 
           <button className="form-input-btn" type="submit">
-            Sign Up
+            Update
           </button>
-          <span className="form-input-login">
-            Already have an account? <Link to="login"> Login here</Link>
-          </span>
         </form>
       </div>
       {error && <Alert severity="error">{error}</Alert>}
