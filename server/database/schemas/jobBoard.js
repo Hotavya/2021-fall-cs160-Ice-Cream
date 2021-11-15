@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import JobApplicationSchema from './jobApplication.js';
+import JobApplication from './jobApplication.js';
 
 /* Schema for job board. */
 const jobBoardSchema = mongoose.Schema(
@@ -15,7 +15,7 @@ const jobBoardSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'UserAccount',
     },
-    jobApplications: [{ JobApplicationSchema }],
+    //jobApplications: [{ JobApplication }],
   },
   { timestamps: true }
 );

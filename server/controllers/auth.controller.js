@@ -1,5 +1,8 @@
 import UserAccount from '../database/schemas/userAccount.js';
 import * as EmailValidator from 'email-validator';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Sign up
 export const signup = async (req, res) => {
@@ -33,26 +36,18 @@ export const signup = async (req, res) => {
     try {
       const newUserAccount = new UserAccount({ email, password });
       await newUserAccount.save();
-      //res.redirect('/auth/signin');
+      // Create JWT for newly created user
+      const accessToken = jwt.sign(newUserAccount.toJSON(), process.env.ACCESS_TOKEN_SECRET);
+      res.status(200).json({ accessToken: accessToken} );
     } catch (error) {
       return res.status(500).json({
         error: 'Internal Server Error',
         message: 'Account not created. Something went wrong in the server'
       });
     }
-    return res.status(200).send({ message: 'Account Successfully Created' });
   }
 };
 
 // Sign in
 export const signin = async (req, res) => {
-  const { email, password } = req.body;
-
-  UserAccount.findOne({email}, (err, user) => {
-    if(err || !email) {
-      return res.status(400).json({
-        message: "Account does not exist with these credentials"
-      })
-    }
-  })
 };

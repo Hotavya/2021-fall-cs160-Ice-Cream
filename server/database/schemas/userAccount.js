@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+
 
 /* User account schema */
-const userAccountSchema = mongoose.Schema(
+const UserAccountSchema = mongoose.Schema(
   {
     email: {
       type: String,
@@ -12,28 +13,12 @@ const userAccountSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    firstName: {
-      type: String,
-    },
-    lastName: {
-      type: String,
-    },
-    bio: {
-      type: String,
-    },
-    lastActive: {
-      type: Date,
-      default: Date.now(),
-    },
-    profession: {
-      type: String,
-    },
   },
   { timestamps: true }
 );
 
 // Hash user password before storing in database
-userAccountSchema.pre('save', async function(next) {
+UserAccountSchema.pre('save', async function(next) {
   try{
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(this.password, salt);
@@ -44,5 +29,5 @@ userAccountSchema.pre('save', async function(next) {
   }
 })
                       
-const UserAccount = mongoose.model('UserAccount', userAccountSchema);
+const UserAccount = mongoose.model('UserAccount', UserAccountSchema);
 export default UserAccount;
