@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-
+import jobBoardSchema from './jobBoard.js';
 
 /* User account schema */
 const UserAccountSchema = mongoose.Schema(
@@ -13,6 +13,23 @@ const UserAccountSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    bio: {
+      type: String,
+    },
+    lastActive: {
+      type: Date,
+      default: Date.now(),
+    },
+    profession: {
+      type: String,
+    },
+    jobBoards: [jobBoardSchema],
   },
   { timestamps: true }
 );
