@@ -6,6 +6,7 @@ import NavBar from './components/navbar/navbar';
 import Home from './pages/HomePage';
 import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import JobApplication from './pages/JobApplication/JobApplication';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -35,7 +36,8 @@ function App() {
           <Login saveUserToken={registerUser} />
         </Route>
         <Route exact path="/">
-          <Home />
+          {/* <Home /> */}
+          <JobApplication></JobApplication>
         </Route>
         <Route></Route>
       </Router>
