@@ -7,10 +7,14 @@ import './JobApplication.css';
 
 const JobApplication = ({ saveUserToken }) => {
   const [formValues, setFormValues] = useState({
-    username: '',
-    email: '',
-    password: '',
-    password2: '',
+    job_title: '',
+    company: '',
+    company_website: '',
+    postURL: '',
+    date_applied: '',
+    status: '',
+    job_description: '',
+    note: '',
   });
 
   // Keeps track of error message to display to user when the submit the form
@@ -30,26 +34,34 @@ const JobApplication = ({ saveUserToken }) => {
     event.preventDefault();
 
     if (
-      !formValues.username ||
-      !formValues.email ||
-      !formValues.password ||
-      !formValues.password2
+      !formValues.job_title ||
+      !formValues.company ||
+      !formValues.company_website ||
+      !formValues.postURL ||
+      !formValues.date_applied ||
+      !formValues.status ||
+      !formValues.job_description ||
+      !formValues.note 
     ) {
       setError('All field are required!');
       return;
     }
 
-    if (formValues.password !== formValues.password2) {
-      setError('Passords are not matching');
-      return;
-    }
+    // if (formValues.password !== formValues.password2) {
+    //   setError('Passords are not matching');
+    //   return;
+    // }
 
     try {
       const response = await axios.post('/auth/signup', {
-        email: formValues.email,
-        username: formValues.username,
-        password: formValues.password,
-        password2: formValues.password2,
+        jobTile: formValues.job_title,
+        company: formValues.company,
+        companyWebsite: formValues.company_website,
+        postingUrl: formValues.postURL,
+        status: formValues.date_applied,
+        jobDescription: formValues.status,
+        note: formValues.job_description,
+        dateApplied: formValues.note,
       });
 
       // Save user token
@@ -71,14 +83,14 @@ const JobApplication = ({ saveUserToken }) => {
           <div className="form__all">
             <div className="form__left">
                 <div className="form-inputs">
-                    <label htmlFor="job-title" className="form-label">Job Title</label>
+                    <label htmlFor="job_title" className="form-label">Job Title</label>
                     <input
-                    id="job-title"
+                    id="job_title"
                     type="text"
-                    name="job-title"
+                    name="job_title"
                     className="form-input"
                     placeholder="Job Title"
-                    onChange={handleFormUpdate('job-title')}
+                    onChange={handleFormUpdate('job_title')}
                     />
                 </div>
                 <div className="form-inputs">
@@ -93,14 +105,14 @@ const JobApplication = ({ saveUserToken }) => {
                     />
                 </div>
                 <div className="form-inputs">
-                    <label htmlFor="company-website" className="form-label">Company Website</label>
+                    <label htmlFor="company_website" className="form-label">Company Website</label>
                     <input
-                    id="company-website"
+                    id="company_website"
                     type="text"
-                    name="company-website"
+                    name="company_website"
                     className="form-input"
                     placeholder="Company Website"
-                    onChange={handleFormUpdate('company-website')}
+                    onChange={handleFormUpdate('company_website')}
                     />
                 </div>
                 <div className="form-inputs">
@@ -115,14 +127,14 @@ const JobApplication = ({ saveUserToken }) => {
                     />
                 </div>
                 <div className="form-inputs">
-                    <label htmlFor="date-applied" className="form-label">Date Applied</label>
+                    <label htmlFor="date_applied" className="form-label">Date Applied</label>
                     <input
-                    id="date-applied"
+                    id="date_applied"
                     type="date"
-                    name="date-applied"
+                    name="date_applied"
                     className="form-input"
                     placeholder="Date Applied"
-                    onChange={handleFormUpdate('date-applied')}
+                    onChange={handleFormUpdate('date_applied')}
                     />
                 </div>
             </div>
@@ -147,14 +159,14 @@ const JobApplication = ({ saveUserToken }) => {
                 </div>
 
                 <div className="form-inputs">
-                    <label htmlFor="job-description" className="form-label">Job description</label>
+                    <label htmlFor="job_description" className="form-label">Job description</label>
                     <textarea
-                    id="job-description"
+                    id="job_description"
                     type="text"
-                    name="job-description"
+                    name="job_description"
                     className="form-input"
                     placeholder="Job description"
-                    onChange={handleFormUpdate('job-description')}
+                    onChange={handleFormUpdate('job_description')}
                     >
                     </textarea>
                 </div>
