@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './app.css';
+import './App.css';
 import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import NavBar from './components/navbar/navbar';
 import Home from './pages/HomePage';
 import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import JobApplication from './pages/JobApplication/JobApplication';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -36,6 +37,7 @@ function App() {
         </Route>
         <Route exact path="/">
           <Home />
+          {/* <JobApplication></JobApplication> */}
         </Route>
         <Route></Route>
       </Router>
