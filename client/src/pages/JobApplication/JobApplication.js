@@ -51,9 +51,9 @@ const JobApplication = ({ saveUserToken }) => {
     //   setError('Passords are not matching');
     //   return;
     // }
-
+    
     try {
-      const response = await axios.post('/auth/signup', {
+      const response = await axios.axios.put('/jobboard/id/' , {
         jobTile: formValues.job_title,
         company: formValues.company,
         companyWebsite: formValues.company_website,
