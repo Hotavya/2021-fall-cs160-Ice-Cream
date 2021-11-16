@@ -53,15 +53,15 @@ const JobApplication = ({ saveUserToken }) => {
     // }
     
     try {
-      const response = await axios.axios.put('/jobboard/id/' , {
+      const response = await axios.put('/jobboard/id/' , {
         jobTile: formValues.job_title,
         company: formValues.company,
         companyWebsite: formValues.company_website,
         postingUrl: formValues.postURL,
-        status: formValues.date_applied,
-        jobDescription: formValues.status,
-        note: formValues.job_description,
-        dateApplied: formValues.note,
+        status: formValues.status,
+        jobDescription: formValues.job_description,
+        note: formValues.note,
+        dateApplied: formValues.date_applied,
       });
 
       // Save user token
