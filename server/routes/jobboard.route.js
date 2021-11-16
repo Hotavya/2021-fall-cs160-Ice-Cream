@@ -2,11 +2,11 @@ import express from 'express';
 const router = express.Router();
 
 import {
-  getJobBoard,
-  createJobBoard,
+  getjobboard,
+  createjobboard,
 } from '../controllers/jobboard.controller.js';
 
-router.get('/', getJobBoard);
-router.post('/', createJobBoard);
+router.get('/', getjobboard);
+router.post('/createjobboard', createjobboard);
 
 export default router;

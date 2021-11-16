@@ -8,14 +8,14 @@ const jobBoardSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-    },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'UserAccount',
-    },
-    jobApplications: [{ JobApplicationSchema }],
+    // description: {
+    //   type: String,
+    // },
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'UserAccount',
+    // },
+    // jobApplications: [{ JobApplicationSchema }],
   },
   { timestamps: true }
 );

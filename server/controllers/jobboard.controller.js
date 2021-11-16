@@ -1,8 +1,10 @@
 import dotenv from 'dotenv';
+import mongo from 'mongoose';
 import jobBoardSchema from '../database/schemas/jobBoard.js';
+//import JobBoard from '../database/schemas/jobBoard.js';
 dotenv.config();
 
-export const getJobBoard = async (req, res) => {
+export const getjobboard = async (req, res) => {
   jobBoardSchema
     .find({ _id: req.body.jobboardid })
     .exec()
@@ -25,5 +27,30 @@ export const getJobBoard = async (req, res) => {
     });
 };
 
-// Handler to create a job board
-export const createJobBoard = async (req, res) => {};
+//Create a job board
+
+export const createjobboard = async (req, res) => {
+  const { title /*, description, user, jobApplications*/} = req.body;
+  //const title = "test";
+  // Check if title or company field empty
+  if(!title) {
+      return res.status(400).json({
+      message: "title is empty"
+      });
+  }
+  // Create job board
+  else {
+      try {
+          const newJobBoard = new jobBoardSchema( title/*, description, user, jobApplications*/ );
+          await newJobBoard.save();
+          return res.status(200).json({
+              message: 'Job board successfully created'
+          });
+      } catch (error) {
+          return res.status(500).json({
+          error: 'Internal Server Error',
+          message: 'Job board not created. Something went wrong in the server'
+      });
+      }
+  }
+};
