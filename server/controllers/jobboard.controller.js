@@ -3,28 +3,27 @@ import jobBoardSchema from '../database/schemas/jobBoard.js';
 import jobApplicationSchema from '../database/schemas/jobApplication.js';
 dotenv.config();
 
-export const jobboard = async (req, res) => {
-
-     jobBoardSchema.find({_id:req.body.jobboardid})
-     .exec()
-      .then(jobboard => {
-          if (jobboard.length > 0) {
-              return res.status(200).json({
-                  jobboard
-              });
-            }
-              else
-              {
-                return res.status(404).json({
-                    message: "jobboard not found"});
-              } 
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json({
-                    error: err
-                });
-            });
+export const getJobBoard = async (req, res) => {
+  jobBoardSchema
+    .find({ _id: req.body.jobboardid })
+    .exec()
+    .then((jobboard) => {
+      if (jobboard.length > 0) {
+        return res.status(200).json({
+          jobboard,
+        });
+      } else {
+        return res.status(404).json({
+          message: 'jobboard not found',
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
 };
 
 export const createjobapplication = async (req, res) => {
@@ -123,3 +122,7 @@ export const deletejobapplication = async (req, res) => {
         });
     }
 };
+
+
+// Handler to create a job board
+export const createJobBoard = async (req, res) => {};
