@@ -4,7 +4,6 @@ import cors from 'cors';
 
 import authRoutes from './routes/auth.route.js';
 import jobboardRoutes from './routes/jobboard.route.js';
-import jobapplicationRoutes from './routes/jobapplication.route.js';
 
 
 // connect to database
@@ -30,4 +29,3 @@ app.listen(PORT, () => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/jobboard', jobboardRoutes);
-app.use('/api/jobapplication', jobapplicationRoutes);

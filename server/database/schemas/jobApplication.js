@@ -49,5 +49,4 @@ const JobApplicationSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const JobApplication = mongoose.model('JobAccount', JobApplicationSchema);
-export default JobApplication;
+export default JobApplicationSchema;

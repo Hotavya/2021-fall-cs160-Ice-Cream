@@ -29,7 +29,7 @@ const UserAccountSchema = mongoose.Schema(
     profession: {
       type: String,
     },
-    jobBoards: [jobBoardSchema],
+    //jobBoards: [jobBoard],
   },
   { timestamps: true }
 );
@@ -46,5 +46,4 @@ UserAccountSchema.pre('save', async function(next) {
   }
 })
                       
-const UserAccount = mongoose.model('UserAccount', UserAccountSchema);
-export default UserAccount;
+export default UserAccountSchema;

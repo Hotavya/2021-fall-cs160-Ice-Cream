@@ -15,10 +15,9 @@ const jobBoardSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'UserAccount',
     },
-    //jobApplications: [{ JobApplication }],
+    jobApplications: [{ JobApplication }],
   },
   { timestamps: true }
 );
 
-const JobBoard = mongoose.model('JobBoard', jobBoardSchema);
-export default JobBoard;
+export default jobBoardSchema;
