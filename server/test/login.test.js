@@ -26,12 +26,12 @@ describe('POST /api/auth/sigin', () => {
             })
     })
 
-    it("Should not login user and return a status code of 500", (done) => {
+    it("Should not login user with incorrect email return a status code of 500", (done) => {
         chai.request(app)
             .post('/api/auth/signin')
             .send({
                 "email": "doestnotexist@email.com",
-                "password": "wrongpassword"
+                "password": "testpassword"
             })
             .end((err, res) => {
                 res.should.have.status(500);
@@ -41,5 +41,20 @@ describe('POST /api/auth/sigin', () => {
                 done();
             })
     })
-});
 
+    it("Should not login user with incorrect password return a status code of 401", (done) => {
+        chai.request(app)
+            .post('/api/auth/signin')
+            .send({
+                "email": "test@email.com",
+                "password": "testpasswordlol"
+            })
+            .end((err, res) => {
+                res.should.have.status(401);
+                expect(res.body).to.be.a('object');
+                console.log('Res body message: ', res.body.message);
+                console.log('Res error message: ', res.error.message);
+                done();
+            })
+    })
+});
