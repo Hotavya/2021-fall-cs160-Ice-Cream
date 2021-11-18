@@ -4,6 +4,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import NavBar from './components/navbar/navbar';
 import Home from './pages/HomePage';
+import JobBoard from './pages/jobBoard/jobBoard';
 import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -37,6 +38,10 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route exact path="/jobboard/:id">
+          <JobBoard />
+        </Route>
+
         <Route></Route>
       </Router>
     </main>
