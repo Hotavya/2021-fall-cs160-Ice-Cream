@@ -54,7 +54,11 @@ describe('login tests', () => {
 
     // Alert element is not renders
     expect(screen.queryByTestId('alert-element')).toBeNull();
-
+    
+    // set username to empty string
+    userEvent.clear(emailInput);
+    expect(emailInput.value).toEqual('');
+    
     // Click login button
     userEvent.click(button);
 
