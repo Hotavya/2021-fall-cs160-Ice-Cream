@@ -1,7 +1,9 @@
 import UserAccount from '../database/schemas/userAccount.js';
 import * as EmailValidator from 'email-validator';
-import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt'
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Sign up
 export const signup = async (req, res) => {
@@ -35,14 +37,15 @@ export const signup = async (req, res) => {
     try {
       const newUserAccount = new UserAccount({ email, password });
       await newUserAccount.save();
-      //res.redirect('/auth/signin');
+      // Create JWT for newly created user
+      const accessToken = jwt.sign(newUserAccount.toJSON(), process.env.ACCESS_TOKEN_SECRET);
+      res.status(200).json({ accessToken: accessToken} );
     } catch (error) {
       return res.status(500).json({
         error: 'Internal Server Error',
         message: 'Account not created. Something went wrong in the server',
       });
     }
-    return res.status(200).send({ message: 'Account Successfully Created' });
   }
 };
 
