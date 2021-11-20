@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 /* Schema for job application , used inside jobBoard as a nested object */
-const JobApplicationSchema = new mongoose.Schema(
+const JobApplicationSchema = mongoose.Schema(
   {
-    jobTile: {
+    jobTitle: {
       type: String,
       required: true,
     },
@@ -48,4 +48,5 @@ const JobApplicationSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
 export default JobApplicationSchema;
