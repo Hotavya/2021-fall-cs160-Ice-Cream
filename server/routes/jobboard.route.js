@@ -10,7 +10,7 @@ import {
 } from '../controllers/jobboard.controller.js';
 
 router.get('/', getjobboard);
-router.post('/', createjobboard);
+router.post('/createjobboard', createjobboard);
 router.post('/jobboard/createjobapplication', createjobapplication);
 router.post('/jobboard/updatejobapplication', updatejobapplication);
 router.delete('/jobboard/deletejobapplication', deletejobapplication);
