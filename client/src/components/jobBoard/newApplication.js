@@ -7,11 +7,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
+import axios from '../../backendConnection';
+import Cookies from 'js-cookie';
 
 import './style.css';
 
+const jobBoardId = 10;
 /* Display the job applications of a job board */
-const NewJobApplication = ({ closeWindow }) => {
+const NewJobApplication = ({ closeWindow, applications }) => {
   const [jobTitle, setJobTitle] = useState('');
   const [company, setCompany] = useState('');
   const [status, setStatus] = useState('APPLIED');
@@ -50,6 +53,24 @@ const NewJobApplication = ({ closeWindow }) => {
     setIsSavedDisabled(
       company === '' || jobTitle === '' || company === null || jobTitle === null
     );
+  };
+
+  const saveApplication = async () => {
+    try {
+      // Save application to the backend
+      const data = { jobTitle, company, status, postingLink };
+      const response = await axios.post(`/jobboard/${jobBoardId}`, data, {
+        headers: {
+          authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      });
+
+      // Add job new application to the list and close add application window
+      applications.unshift(response.data);
+      closeWindow();
+    } catch (error) {
+      alert('Something went wrong');
+    }
   };
   return (
     <section>
@@ -109,7 +130,11 @@ const NewJobApplication = ({ closeWindow }) => {
             </FormControl>
           </Box>
           <Stack spacing={2} direction="row">
-            <Button variant="contained" disabled={isSavedDisabled}>
+            <Button
+              variant="contained"
+              disabled={isSavedDisabled}
+              onClick={saveApplication}
+            >
               Save
             </Button>
             <Button variant="outlined" onClick={closeWindow}>

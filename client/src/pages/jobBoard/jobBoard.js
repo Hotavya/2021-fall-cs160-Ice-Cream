@@ -33,9 +33,12 @@ const applications = [
     status: 'Applied',
   },
 ];
-const JobBoard = () => {
+const JobBoard = (props) => {
   const [value, setValue] = React.useState(0);
   const [addApplication, setAddApplication] = useState(false);
+
+  // Get board id from url
+  const jobBoardId = props.match.params.id;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -68,7 +71,11 @@ const JobBoard = () => {
         <BoardApplications applications={applications} />
       </section>
       {addApplication && (
-        <NewApplicationForm closeWindow={closeNewApplicationForm} />
+        <NewApplicationForm
+          closeWindow={closeNewApplicationForm}
+          applications={applications}
+          jobBoardId={jobBoardId}
+        />
       )}
     </main>
   );

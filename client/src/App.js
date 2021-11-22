@@ -38,9 +38,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/jobboard/:id">
-          <JobBoard />
-        </Route>
+        <Route exact path="/jobboard/:id" component={JobBoard} />
 
         <Route></Route>
       </Router>
