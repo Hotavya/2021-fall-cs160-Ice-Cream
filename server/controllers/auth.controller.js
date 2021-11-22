@@ -1,5 +1,9 @@
 import UserAccount from '../database/schemas/userAccount.js';
 import * as EmailValidator from 'email-validator';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt'
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Sign up
 export const signup = async (req, res) => {
@@ -13,15 +17,15 @@ export const signup = async (req, res) => {
   // Check if email is already used by an account
   else if (await UserAccount.exists({ email: email })) {
     return res.status(400).json({
-      message: 'Account already exists',
+      message: 'Account already exists'
     });
   }
-  // // Check if email entered is correct format
-  // else if(!EmailValidator.validate(email)) {
-  //   return res.status(400).json({
-  //     message: "Invalid email address"
-  //   });
-  // }
+  // Check if email entered is correct format
+  else if (!EmailValidator.validate(email)) {
+    return res.status(400).json({
+      message: "Invalid email address"
+    });
+  }
   // Check if user password is 8 or more characters in length
   else if (password.length < 8) {
     return res.status(400).json({
@@ -33,26 +37,59 @@ export const signup = async (req, res) => {
     try {
       const newUserAccount = new UserAccount({ email, password });
       await newUserAccount.save();
-      //res.redirect('/auth/signin');
+      // Create JWT for newly created user
+      const accessToken = jwt.sign(newUserAccount.toJSON(), process.env.ACCESS_TOKEN_SECRET);
+      res.status(200).json({ accessToken: accessToken} );
     } catch (error) {
       return res.status(500).json({
         error: 'Internal Server Error',
         message: 'Account not created. Something went wrong in the server',
       });
     }
-    return res.status(200).send({ message: 'Account Successfully Created' });
   }
 };
 
 // Sign in
 export const signin = async (req, res) => {
-  const { email, password } = req.body;
-
-  UserAccount.findOne({ email }, (err, user) => {
-    if (err || !email) {
-      return res.status(400).json({
-        message: 'Account does not exist with these credentials',
+  UserAccount.findOne({ email: req.body.email })
+    .exec()
+    .then(user => {
+      if (typeof user === undefined) {
+        return res.status(401).json({
+          message: "Auth failed"
+        });
+      }
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            message: "Auth failed"
+          });
+        }
+        if (result) {
+          const token = jwt.sign(
+            {
+              email: user.email,
+              userId: user._id
+            },
+            process.env.JWT_KEY,
+            {
+              expiresIn: "1h"
+            }
+          );
+          return res.status(200).json({
+            message: "Auth successful",
+            token: token
+          });
+        }
+        res.status(401).json({
+          message: "Auth failed"
+        });
       });
-    }
-  });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 };

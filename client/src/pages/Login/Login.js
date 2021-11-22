@@ -16,7 +16,7 @@ const Login = ({ saveUserToken }) => {
   const [error, setError] = useState('');
 
   // Used to change the url/history
-  const history = useHistory();
+  let history = useHistory();
 
   const handleFormUpdate = (param) => (event) => {
     setFormValues({ ...formValues, [param]: event.target.value });
@@ -29,7 +29,7 @@ const Login = ({ saveUserToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!formValues.email || !formValues.password) {
-      setError('A field cannot be empty');
+      setError('All field are required!');
       return;
     }
 
@@ -83,7 +83,7 @@ const Login = ({ saveUserToken }) => {
                 type="email"
                 name="email"
                 className="form-input"
-                placeholder="email"
+                placeholder="Email"
                 onChange={handleFormUpdate('email')}
               />
             </div>
@@ -109,7 +109,9 @@ const Login = ({ saveUserToken }) => {
           </form>
         </div>
       </section>
-      {error && <Alert severity="error">{error}</Alert>}
+      {error && (<Alert severity="error" data-testid="alert-element">
+        {error}
+      </Alert>)}
     </div>
   );
 };

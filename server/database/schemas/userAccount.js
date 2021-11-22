@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+import jobBoardSchema from './jobBoard.js';
 
 /* User account schema */
 const userAccountSchema = mongoose.Schema(
@@ -28,13 +29,15 @@ const userAccountSchema = mongoose.Schema(
     profession: {
       type: String,
     },
+    jobBoards: [jobBoardSchema],
   },
   { timestamps: true }
 );
 
 // Hash user password before storing in database
-userAccountSchema.pre('save', async function(next) {
-  try{
+
+userAccountSchema.pre('save', async function (next) {
+  try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(this.password, salt);
     this.password = hashedPassword;
@@ -42,7 +45,7 @@ userAccountSchema.pre('save', async function(next) {
   } catch (error) {
     next(error);
   }
-})
-                      
+});
+
 const UserAccount = mongoose.model('UserAccount', userAccountSchema);
 export default UserAccount;
