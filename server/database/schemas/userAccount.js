@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jobBoardSchema from './jobBoard.js';
 
 /* User account schema */
-const UserAccountSchema = mongoose.Schema(
+const userAccountSchema = mongoose.Schema(
   {
     email: {
       type: String,
@@ -36,8 +36,6 @@ const UserAccountSchema = mongoose.Schema(
 
 // Hash user password before storing in database
 
-UserAccountSchema.pre('save', async function(next) {
-  try{
 userAccountSchema.pre('save', async function (next) {
   try {
     const salt = await bcrypt.genSalt(10);
@@ -47,6 +45,7 @@ userAccountSchema.pre('save', async function (next) {
   } catch (error) {
     next(error);
   }
-})
-                      
-export default UserAccountSchema;
+});
+
+const UserAccount = mongoose.model('UserAccount', userAccountSchema);
+export default UserAccount;
