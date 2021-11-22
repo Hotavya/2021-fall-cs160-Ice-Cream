@@ -1,4 +1,5 @@
 import express from 'express';
+import authenticateToken from '../middleware/index.js';
 const router = express.Router();
 
 import { createjobapplication } from '../controllers/jobboard.controller.js';
