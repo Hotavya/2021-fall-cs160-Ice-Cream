@@ -15,7 +15,7 @@ const jobBoardSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'UserAccount',
     },
-    jobApplications: [{ JobApplication }],
+    jobApplications: [JobApplication],
   },
   { timestamps: true }
 );
