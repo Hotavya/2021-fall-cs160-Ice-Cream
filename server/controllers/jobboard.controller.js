@@ -1,32 +1,68 @@
 import dotenv from 'dotenv';
 import mongo from 'mongoose';
 import UserAccount from '../database/schemas/userAccount.js';
-
-import jobBoardSchema from '../database/schemas/jobBoard.js';
 import jobApplicationSchema from '../database/schemas/jobApplication.js';
 dotenv.config();
 
-export const getJobBoard = async (req, res) => {
-  jobBoardSchema
-    .find({ _id: req.body.jobboardid })
-    .exec()
-    .then((jobboard) => {
-      if (jobboard.length > 0) {
-        return res.status(200).json({
-          jobboard,
-        });
-      } else {
-        return res.status(404).json({
-          message: 'jobboard not found',
-        });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: err,
+// Get list of jobboard for a user
+export const getAllJobBoard = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const userAccount = await UserAccount.findById(userId);
+
+    // If user with this ID was not found
+    if (!userAccount) {
+      return res.status(404).json({
+        error: 'User Not Found',
+        message: 'Job board cannot be created because user was not found',
       });
+    }
+
+    return res.status(200).json({
+      jobBoards: userAccount.jobBoards,
     });
+  } catch (error) {
+    return res.status(500).json({
+      error: 'Internal Server Error',
+      message: 'Something went wrong in the server',
+    });
+  }
+};
+
+// Get a user's jobboard with a specfic id
+export const getJobBoard = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const boardId = req.params.boardid;
+
+    const userAccount = await UserAccount.findById(userId);
+
+    // If user with this ID was not found
+    if (!userAccount) {
+      return res.status(404).json({
+        error: 'User Not Found',
+        message: 'Job board cannot be created because user was not found',
+      });
+    }
+
+    // Find the jobboard
+    const jobBoard = userAccount.jobBoards.find(
+      (board) => boardId == board._id
+    );
+    if (!jobBoard)
+      return res.status(400).json({
+        error: 'Not Found error',
+        messsage: 'Job board was not found',
+      });
+    return res.status(200).json({
+      jobBoard,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: 'Internal Server Error',
+      message: 'Something went wrong in the server',
+    });
+  }
 };
 
 //Create a job board

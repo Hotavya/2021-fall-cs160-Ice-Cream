@@ -4,6 +4,7 @@ const router = express.Router();
 
 import {
   getJobBoard,
+  getAllJobBoard,
   createJobBoard,
   createJobApplication,
   updateJobApplication,
@@ -11,6 +12,7 @@ import {
 } from '../controllers/jobboard.controller.js';
 
 router.post('/', authenticateToken, createJobBoard);
+router.get('/', authenticateToken, getAllJobBoard);
 router.get('/:boardid', authenticateToken, getJobBoard);
 
 router.post(
