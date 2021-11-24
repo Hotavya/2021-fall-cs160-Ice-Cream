@@ -68,19 +68,24 @@ export const signin = async (req, res) => {
             message: 'Auth failed',
           });
         }
-        const token = jwt.sign(
-          {
-            email: user.email,
-            userId: user._id,
-          },
-          process.env.JWT_KEY,
-          {
-            expiresIn: '1h',
-          }
-        );
-        return res.status(200).json({
-          message: 'Auth successful',
-          token: token,
+        if (result) {
+          const token = jwt.sign(
+            {
+              email: user.email,
+              userId: user._id,
+            },
+            process.env.JWT_KEY,
+            {
+              expiresIn: '1h',
+            }
+          );
+          return res.status(200).json({
+            message: 'Auth successful',
+            token: token,
+          });
+        }
+        res.status(401).json({
+          message: 'Auth failed',
         });
       });
     })
