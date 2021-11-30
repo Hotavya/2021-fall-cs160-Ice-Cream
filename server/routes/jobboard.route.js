@@ -13,16 +13,16 @@ import {
 
 router.post('/', authenticateToken, createJobBoard);
 router.get('/', authenticateToken, getAllJobBoard);
-router.get('/:boardid', authenticateToken, getJobBoard);
+router.get('/:boardId', authenticateToken, getJobBoard);
 
 router.post(
   '/:boardid/jobapplication',
   authenticateToken,
   createJobApplication
 );
-router.put('/:boardid/jobapplication', authenticateToken, updateJobApplication);
+router.put('/:boardId/jobapplication', authenticateToken, updateJobApplication);
 router.delete(
-  '/:boardid/jobapplication',
+  '/:boardId/jobapplication/:applicationId',
   authenticateToken,
   deleteJobApplication
 );
