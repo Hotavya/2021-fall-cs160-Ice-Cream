@@ -49,10 +49,15 @@ const NavBar = ({ isLoggedIn, logoutUser }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <img src="../../logo.png" alt="favicon" className="navbar__favicon" />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Tracker
-          </Typography>
+            <a href="/" className="favicon">
+              <img src="../../logo.png" alt="favicon" className="navbar__favicon" />
+            </a>
+            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+              <a href="/" className="logotext">
+                Tracker
+              </a>
+            </Typography>
+            
 
           {isLoggedIn && (
             <div>
@@ -72,10 +77,10 @@ const NavBar = ({ isLoggedIn, logoutUser }) => {
           {!isLoggedIn && (
             <div>
               <Button color="inherit" component={Link} to="/login">
-                Login
+                <span className="button">Login</span>
               </Button>
               <Button color="inherit" component={Link} to="/signup">
-                Signup
+                <span className="button">Signup</span>
               </Button>
             </div>
           )}
