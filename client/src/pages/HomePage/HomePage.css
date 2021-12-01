@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+/* Global */
+
+:root {
+  /* Color */
+  --color-white: #ffffff;
+  --color-light-white: #eeeeee;
+  --color-dark-white: #bdbdbd;
+  --color-pink: #fe918d;
+  --color-dark-pink: #ff6863;
+  --color-dark-grey: #4d4d4d;
+  --color-grey: #616161;
+  --color-light-grey: #7c7979;
+  --color-blue: #73aace;
+  --color-yellow: #fff7d1;
+  --color-orange: #feb546;
+  --color-black: #000000;
+  --color-primary: #eceff1;
+  --color-light: #ffffff;
+  --color-dark: #babdbe;
+  --color-main: #F8914D;
+
+  /* Font size */
+  --font-large: 48px;
+  --font-medium: 38px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
+
+  /* Font weight */
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+  /* Size */
+  --size-border-radious: 4px;
+
+  /* Animation duration */
+  --animation-duration: 300ms;
+}
+
+/* universal Tag */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'PT Sans', sans-serif;
+}
+
+body {
+  margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: default;
+  background-color: #F2F2F2;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-white)
+}
+
+ul {
+  padding-left: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  /* for iphone users */
+  padding: 0;
+}
+
+/* Typography */
+
+h1 {
+  font-size: var(--font-large);
+  font-weight: var(--weight-bold);
+  color: var(--color-black);
+  margin: 16px 0px;
+}
+
+h2 {
+  font-size: var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+  color: var(--color-black);
+  margin: 8px 0;
+}
+
+h3 {
+  font-size: var(--font-regular);
+  font-weight: var(--weight-regular);
+  color: var(--color-black);
+  margin: 8px 0;
+}
+
+p {
+  font-size: var(--font-regular);
+  font-weight: var(--weight-regular);
+  color: var(--color-black);
+  margin: 4px 0;
+}
+
+
+.section_all {
+    /* background-color: var(--color-light); */
+    padding: 36px;
+    text-align: center;
+    
+    
+}
+.hp-h1 {
+    max-width: 900px;
+    margin-bottom: 5px;
+    color: #1976D2;
+    font-size: 48px;
+    line-height: 68px;
+    font-weight: 500;
+    margin: 12px auto;
+    text-align: center;
+    font-weight: 999;
+}
+
+.hp-h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    text-align: center;
+   
+}
+
+.main__pic {
+    width: 50%;
+    border-radius: 50px;
+    border: 3px solid black;
+}
+
+.signup_button {
+    width: 400px;
+    padding: 18px;
+    margin: 20px auto;
+    margin-top: 50px;
+    border-radius: 10px;
+    background: #696BEE;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    display: block;
+}
+
+.signup_inform a {
+    color: #696BEE;
+}
+
+.signup_inform {
+    text-align: center;
+}
+
+.form-label {
+  display: inline-block;
+  /* font-size: 0.8rem; */
+  margin-bottom: 6px;
+  /* text-align: left; */
+  color: #828180;
+}
+
+.form-input-login {
+  margin-top: 10px;
+  color: #828180;
+  text-align: center;
+}
+
+.form-input-login a {
+  color: #696BEE;
+}
