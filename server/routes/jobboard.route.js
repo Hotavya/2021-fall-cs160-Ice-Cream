@@ -16,11 +16,15 @@ router.get('/', authenticateToken, getAllJobBoard);
 router.get('/:boardId', authenticateToken, getJobBoard);
 
 router.post(
-  '/:boardid/jobapplication',
+  '/:boardId/jobapplication',
   authenticateToken,
   createJobApplication
 );
-router.put('/:boardId/jobapplication', authenticateToken, updateJobApplication);
+router.put(
+  '/:boardId/jobapplication/:applicationId',
+  authenticateToken,
+  updateJobApplication
+);
 router.delete(
   '/:boardId/jobapplication/:applicationId',
   authenticateToken,
