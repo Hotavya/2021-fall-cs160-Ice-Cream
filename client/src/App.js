@@ -3,7 +3,7 @@ import './App.css';
 import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import NavBar from './components/navbar/navbar';
-import Home from './pages/HomePage';
+import Home from './pages/HomePage/HomePage';
 import JobBoard from './pages/jobBoard/jobBoard';
 import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
