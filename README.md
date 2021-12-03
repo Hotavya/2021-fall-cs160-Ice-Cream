@@ -16,9 +16,9 @@
 - Now go to server folder: `cd ../server`
 - Run npm install to install node dependencies for the server
 
-# Env file
+## Enviroment variables
 
-You’re going to need to have an env file with a constant to connect to a Mongo database as well as a key and secret for authentication and permission
+You’re going to need to have 3 environments variable for the server to connect to a Mongo database as well as a key and secret for authentication and permission. You could have those in a .env file inside the server folder and the file would look like this.
 
 ```
 DATABASE=your database connection uri
@@ -26,10 +26,10 @@ JWT_KEY= enter jwt key
 REFRESH_TOKEN_SECRET = enter token secret
 ```
 
-# Running app
+## Running app
 
 - Open 2 terminal tabs to the project
 - Move to the client folder in one and server folder in the other
-- Run npm run in both tabs
+- Run `npm` start in both tabs
 - The server would be running on port 2000
 - The client would run on port 3000, and you would be automatically be redirected to the page after starting the app on the UI
