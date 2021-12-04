@@ -1,7 +1,5 @@
 import dotenv from 'dotenv';
-import mongo from 'mongoose';
 import UserAccount from '../database/schemas/userAccount.js';
-import jobApplicationSchema from '../database/schemas/jobApplication.js';
 dotenv.config();
 
 // Get list of jobboard for a user
@@ -33,7 +31,7 @@ export const getAllJobBoard = async (req, res) => {
 export const getJobBoard = async (req, res) => {
   try {
     const userId = req.user.userId;
-    const boardId = req.params.boardid;
+    const boardId = req.params.boardId;
 
     const userAccount = await UserAccount.findById(userId);
 
@@ -129,7 +127,7 @@ export const createJobApplication = async (req, res) => {
   // Create job application
   try {
     const userId = req.user.userId;
-    const boardId = req.params.boardid;
+    const boardId = req.params.boardId;
 
     const userAccount = await UserAccount.findById(userId);
 
@@ -146,7 +144,7 @@ export const createJobApplication = async (req, res) => {
       (board) => boardId == board._id
     );
     if (!jobBoard)
-      return res.status(400).jsons({
+      return res.status(400).json({
         error: 'Not Found error',
         messsage: 'Job board was not found',
       });
@@ -171,6 +169,7 @@ export const createJobApplication = async (req, res) => {
       message: 'Job application successfully created',
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       error: 'Internal Server Error',
       message:
@@ -193,79 +192,121 @@ export const updateJobApplication = async (req, res) => {
     offerDetail,
   } = req.body;
 
+  // Add the new job application to the jobboard
+  const newJobApplication = {
+    jobTitle,
+    company,
+    companyWebsite,
+    postingUrl,
+    status,
+    jobDescription,
+    note,
+    dateApplied,
+    interviews,
+    offerDetail,
+  };
+
   // Check if user left job title or company field empty
   if (!jobTitle || !company) {
     return res.status(400).json({
+      error: 'Invalid Request Error',
       message: 'Job title and company are required',
     });
-  } else {
-    try {
-      // Get document ID
-      var id = req.params.id;
-      // Find document by ID and update with new values
-      jobApplicationSchema.findByIdAndUpdate(
-        { _id: new mongo.Types.ObjectId(id) },
-        {
-          jobTitle: jobTitle,
-          company: company,
-          companyWebsite: companyWebsite,
-          postingUrl: postingUrl,
-          status: status,
-          jobDescription: jobDescription,
-          note: note,
-          dateApplied: dateApplied,
-          interviews: interviews,
-          offerDetail: offerDetail,
-        },
-        function (err, result) {
-          if (err) {
-            return res.status(500).json({
-              message: err,
-            });
-          }
-          // Throw error if document does not exist
-          else if (result == null) {
-            return res.status(500).json({
-              message: 'Job application does not exist',
-            });
-          } else {
-            return res.status(200).json({
-              message: 'Job application successfully updated',
-            });
-          }
-        }
-      );
-    } catch (error) {
-      return res.status(500).json({
-        error: 'Internal Server Error',
-        message:
-          'Job application not updated. Something went wrong in the server',
+  }
+  // Update job application
+  try {
+    const userId = req.user.userId;
+    const boardId = req.params.boardId;
+    const applicationId = req.params.applicationId;
+
+    const userAccount = await UserAccount.findById(userId);
+
+    // If user with this ID was not found
+    if (!userAccount) {
+      return res.status(404).json({
+        error: 'User Not Found',
+        message: 'Job board cannot be created because user was not found',
       });
     }
+
+    // Find the jobboard
+    const jobBoard = userAccount.jobBoards.find(
+      (board) => boardId == board._id
+    );
+    if (!jobBoard)
+      return res.status(404).json({
+        error: 'Not Found error',
+        messsage: 'Job board was not found',
+      });
+
+    const application = jobBoard.jobApplications.find(
+      (application) => application._id == applicationId
+    );
+
+    if (!application) {
+      return res.status(404).json({
+        error: 'Not Found error',
+        messsage: 'Job application was not found',
+      });
+    }
+
+    //TODO: Improve this so that other field can be updated as well
+    application.jobTitle = jobTitle;
+    application.company = company;
+    application.status = status;
+
+    userAccount.save();
+    return res.status(200).json({
+      message: 'Job application successfully updated',
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      error: 'Internal Server Error',
+      message:
+        'Job application not updated. Something went wrong in the server',
+    });
   }
 };
 
 export const deleteJobApplication = async (req, res) => {
+  const userId = req.user.userId;
+  const boardId = req.params.boardId;
+  const applicationId = req.params.applicationId;
+
+  const userAccount = await UserAccount.findById(userId);
+
+  // If user with this ID was not found
+  if (!userAccount) {
+    return res.status(404).json({
+      error: 'User Not Found',
+      message: 'Job board cannot be created because user was not found',
+    });
+  }
+
+  // Find the jobboard
+  const jobBoard = userAccount.jobBoards.find((board) => boardId == board._id);
+  if (!jobBoard)
+    return res.status(400).json({
+      error: 'Not Found error',
+      messsage: 'Job board was not found',
+    });
+
   try {
-    var id = req.params.id;
-    jobApplicationSchema.findByIdAndDelete(
-      { _id: new mongo.Types.ObjectId(id) },
-      function (err, result) {
-        if (err) {
-          return res.status(500).json({
-            message: err,
-          });
-        } else if (result == null) {
-          return res.status(500).json({
-            message: 'Job application does not exist',
-          });
-        } else {
-          return res.status(200).json({
-            message: 'Job application successfully deleted',
-          });
-        }
+    const result = await UserAccount.updateOne(
+      { _id: userId, 'jobBoards._id': boardId },
+      {
+        $pull: {
+          'jobBoards.$.jobApplications': { _id: applicationId },
+        },
       }
     );
+
+    //TODO: had check to see if a application was found and deleted
+    console.log(result);
+    return res.status(200).json({
+      message: 'Job application successfully deleted',
+    });
   } catch (error) {
     return res.status(500).json({
       error: 'Internal Server Error',
