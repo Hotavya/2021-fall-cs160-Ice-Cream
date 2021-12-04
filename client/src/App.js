@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './app.css';
 import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import NavBar from './components/navbar/navbar';
 import Home from './pages/HomePage/HomePage';
 import JobBoard from './pages/jobBoard/jobBoard';
+import JobBoardList from './pages/jobBoardList/jobBoards';
 import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import JobApplication from './pages/JobApplication/JobApplication';
@@ -14,6 +15,7 @@ function App() {
 
   useEffect(() => {
     setIsLoggedIn(Cookies.get('token') != null);
+    console.log(isLoggedIn);
   }, [isLoggedIn]);
 
   const registerUser = (token) => {
@@ -37,12 +39,11 @@ function App() {
           <Login saveUserToken={registerUser} />
         </Route>
         <Route exact path="/">
-          <Home />
-          {/* <JobApplication></JobApplication> */}
+          {isLoggedIn ? <JobBoardList /> : <Home />}
         </Route>
         <Route exact path="/jobboard/:id" component={JobBoard} />
 
-        <Route></Route>
+        <Route> </Route>
       </Router>
     </main>
   );

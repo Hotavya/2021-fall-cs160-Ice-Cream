@@ -12,9 +12,13 @@ import Cookies from 'js-cookie';
 
 import './style.css';
 
-const jobBoardId = 10;
 /* Display the job applications of a job board */
-const NewJobApplication = ({ closeWindow, applications }) => {
+const NewJobApplication = ({
+  closeWindow,
+  applications,
+  setApplications,
+  jobBoardId,
+}) => {
   const [jobTitle, setJobTitle] = useState('');
   const [company, setCompany] = useState('');
   const [status, setStatus] = useState('APPLIED');
@@ -37,19 +41,9 @@ const NewJobApplication = ({ closeWindow, applications }) => {
 
   const handlePostingLinkChange = (event) => {
     setPostingLink(event.target.value);
-    console.log(company);
-    console.log(jobTitle);
-    console.log(
-      company === '' || jobTitle === '' || company === null || jobTitle === null
-    );
   };
 
   const enableOrDisableSaveButton = () => {
-    console.log(company);
-    console.log(jobTitle);
-    console.log(
-      company === '' || jobTitle === '' || company === null || jobTitle === null
-    );
     setIsSavedDisabled(
       company === '' || jobTitle === '' || company === null || jobTitle === null
     );
@@ -59,14 +53,19 @@ const NewJobApplication = ({ closeWindow, applications }) => {
     try {
       // Save application to the backend
       const data = { jobTitle, company, status, postingLink };
-      const response = await axios.post(`/jobboard/${jobBoardId}`, data, {
-        headers: {
-          authorization: `Bearer ${Cookies.get('token')}`,
-        },
-      });
+      const response = await axios.post(
+        `/jobboard/${jobBoardId}/jobapplication`,
+        data,
+        {
+          headers: {
+            authorization: `Bearer ${Cookies.get('token')}`,
+          },
+        }
+      );
 
       // Add job new application to the list and close add application window
-      applications.unshift(response.data);
+      // applications.unshift(response.data);
+      setApplications([response.data.application, ...applications]);
       closeWindow();
     } catch (error) {
       alert('Something went wrong');

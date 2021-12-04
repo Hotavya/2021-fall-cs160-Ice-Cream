@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Button from '@mui/material/Button';
 import BoardApplications from '../../components/jobBoard/boardApplications';
 import NewApplicationForm from '../../components/jobBoard/newApplication';
+import Cookies from 'js-cookie';
+import axios from '../../backendConnection';
 
 //TODO: replace this with calls to the backend once we have actual job applications
 const applications = [
@@ -34,11 +36,26 @@ const applications = [
   },
 ];
 const JobBoard = (props) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [jobApplications, setJobApplications] = useState([]);
   const [addApplication, setAddApplication] = useState(false);
-
   // Get board id from url
   const jobBoardId = props.match.params.id;
+
+  useEffect(() => {
+    const fetchJobBoards = async () => {
+      try {
+        const config = {
+          headers: { Authorization: `Bearer ${Cookies.get('token')}` },
+        };
+        const response = await axios.get(`/jobboard/${jobBoardId}`, config);
+        setJobApplications(response.data.jobBoard.jobApplications);
+      } catch (error) {
+        alert('Something went wrong');
+      }
+    };
+    fetchJobBoards();
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -68,12 +85,13 @@ const JobBoard = (props) => {
         >
           Add application
         </Button>
-        <BoardApplications applications={applications} />
+        <BoardApplications applications={jobApplications} />
       </section>
       {addApplication && (
         <NewApplicationForm
           closeWindow={closeNewApplicationForm}
-          applications={applications}
+          applications={jobApplications}
+          setApplications={setJobApplications}
           jobBoardId={jobBoardId}
         />
       )}

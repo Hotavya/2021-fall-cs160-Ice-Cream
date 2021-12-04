@@ -1,0 +1,21 @@
+#main-container {
+    padding: 20px;
+    margin: 50px;
+    text-align: center;
+}
+
+#job-board-item {
+    background: #fff;
+    padding: 20px;
+      width: 100%;
+    margin: 20px;
+}
+
+#job-board-item:hover{
+    background: red;
+}
+
+#button {
+    display: inline-block;
+    width: 70%;
+}

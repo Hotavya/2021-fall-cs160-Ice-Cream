@@ -16,16 +16,18 @@ export const signup = async (req, res) => {
   }
   // Check if email is already used by an account
   else if (await UserAccount.exists({ email: email })) {
+    console.log('here');
     return res.status(400).json({
       message: 'Account already exists',
     });
   }
-  // Check if email entered is correct format
-  else if (!EmailValidator.validate(email)) {
-    return res.status(400).json({
-      message: 'Invalid email address',
-    });
-  }
+  // // Check if email entered is correct format
+  // else if (!EmailValidator.validate(email)) {
+  //   return res.status(400).json({
+  //     message: 'Invalid email address',
+  //   });
+  // }
+
   // Check if user password is 8 or more characters in length
   else if (password.length < 8) {
     return res.status(400).json({
@@ -38,12 +40,19 @@ export const signup = async (req, res) => {
       const newUserAccount = new UserAccount({ email, password });
       await newUserAccount.save();
       // Create JWT for newly created user
-      const accessToken = jwt.sign(
-        newUserAccount.toJSON(),
-        process.env.ACCESS_TOKEN_SECRET
+      const token = jwt.sign(
+        {
+          email: newUserAccount.email,
+          userId: newUserAccount._id,
+        },
+        process.env.JWT_KEY,
+        {
+          expiresIn: '1h',
+        }
       );
-      res.status(200).json({ accessToken: accessToken });
+      res.status(200).json({ token: token, message: 'Auth successful' });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({
         error: 'Internal Server Error',
         message: 'Account not created. Something went wrong in the server',

@@ -20,6 +20,7 @@ const NavBar = ({ isLoggedIn, logoutUser }) => {
     setAnchorEl(event.currentTarget);
   };
   const handleMenuClose = () => {
+    logoutUser();
     setAnchorEl(null);
   };
 
@@ -49,15 +50,18 @@ const NavBar = ({ isLoggedIn, logoutUser }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-            <a href="/" className="favicon">
-              <img src="../../logo.png" alt="favicon" className="navbar__favicon" />
+          <a href="/" className="favicon">
+            <img
+              src="../../logo.png"
+              alt="favicon"
+              className="navbar__favicon"
+            />
+          </a>
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+            <a href="/" className="logotext">
+              Tracker
             </a>
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-              <a href="/" className="logotext">
-                Tracker
-              </a>
-            </Typography>
-            
+          </Typography>
 
           {isLoggedIn && (
             <div>

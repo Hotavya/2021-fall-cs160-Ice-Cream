@@ -94,7 +94,7 @@ export const createJobBoard = async (req, res) => {
 
     // return the newly create jobBoard
     const newBoard = userAccount.jobBoards[userJobBoards.length - 1];
-    return res.status(200).json({ data: newBoard });
+    return res.status(200).json({ jobBoard: newBoard });
   } catch (error) {
     return res.status(500).json({
       error: 'Internal Server Error',
@@ -165,8 +165,10 @@ export const createJobApplication = async (req, res) => {
 
     jobBoard.jobApplications.push(newJobApplication);
     await userAccount.save();
+    const newApplication =
+      jobBoard.jobApplications[jobBoard.jobApplications.length - 1];
     return res.status(200).json({
-      message: 'Job application successfully created',
+      application: newApplication,
     });
   } catch (error) {
     console.log(error);
