@@ -123,8 +123,13 @@ const NewJobApplication = ({
                 <MenuItem value={'WISHLIST'}>Wishlist</MenuItem>
                 <MenuItem value={'APPLIED'}>Applied</MenuItem>
                 <MenuItem value={'INTERVIEWING'}>Interviewing</MenuItem>
-                <MenuItem value={'OFFER'}>Rejected</MenuItem>
-                <MenuItem value={'REJECTED'}>Offer</MenuItem>
+                <MenuItem value={'OFFER'}>Offer</MenuItem>
+                <MenuItem value={'REJECTED WITH INTERVIEW'}>
+                  Rejected after interview
+                </MenuItem>
+                <MenuItem value={'REJECTED WITHOUT INTERVIEW'}>
+                  Rejected w/o interview
+                </MenuItem>
               </Select>
             </FormControl>
           </Box>

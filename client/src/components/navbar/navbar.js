@@ -8,22 +8,35 @@ import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useHistory } from 'react-router';
 
 import { Link } from 'react-router-dom';
 
 import './navbar.css';
 
-const NavBar = ({ isLoggedIn, logoutUser }) => {
+const NavBar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
+  const { isLoggedIn, logoutUser } = props;
+  let history = useHistory();
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleMenuClose = () => {
-    logoutUser();
     setAnchorEl(null);
   };
 
+  const handleProfile = () => {
+    setAnchorEl(null);
+    history.push('/profile');
+  };
+
+  const handleLogout = () => {
+    logoutUser();
+    setAnchorEl(null);
+  };
   // Menu when user is logged in
   const renderMenu = (
     <Menu
@@ -41,8 +54,8 @@ const NavBar = ({ isLoggedIn, logoutUser }) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleProfile}>Profile</MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
 
@@ -50,17 +63,17 @@ const NavBar = ({ isLoggedIn, logoutUser }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <a href="/" className="favicon">
+          <Link to="/" className="favicon">
             <img
               src="../../logo.png"
               alt="favicon"
               className="navbar__favicon"
             />
-          </a>
+          </Link>
           <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-            <a href="/" className="logotext">
+            <Link to="/" className="logotext">
               Tracker
-            </a>
+            </Link>
           </Typography>
 
           {isLoggedIn && (

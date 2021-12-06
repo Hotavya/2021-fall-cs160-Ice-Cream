@@ -6,6 +6,7 @@ import NavBar from './components/navbar/navbar';
 import Home from './pages/HomePage/HomePage';
 import JobBoard from './pages/jobBoard/jobBoard';
 import JobBoardList from './pages/jobBoardList/jobBoards';
+import Profile from './pages/myAccount/myAccount';
 import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import JobApplication from './pages/JobApplication/JobApplication';
@@ -43,7 +44,9 @@ function App() {
         </Route>
         <Route exact path="/jobboard/:id" component={JobBoard} />
 
-        <Route> </Route>
+        <Route exact path="/profile">
+          {isLoggedIn ? <Profile /> : <Home />}
+        </Route>
       </Router>
     </main>
   );
