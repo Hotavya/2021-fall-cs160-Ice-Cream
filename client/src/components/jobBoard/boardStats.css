@@ -1,0 +1,24 @@
+.flexbox-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.flexbox-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    width: 500px;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.chart-title {
+    font-size: 25px;
+    font-weight: bold;
+}

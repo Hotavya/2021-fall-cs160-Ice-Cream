@@ -19,7 +19,14 @@ const JobApplicationSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['WISHLIST', 'APPLIED', 'INTERVIEWING', 'REJECTED', 'OFFER'],
+      enum: [
+        'WISHLIST',
+        'APPLIED',
+        'INTERVIEWING',
+        'OFFER',
+        'REJECTED WITH INTERVIEW',
+        'REJECTED WITHOUT INTERVIEW',
+      ],
       default: 'WISHLIST',
     },
     jobDescription: {
