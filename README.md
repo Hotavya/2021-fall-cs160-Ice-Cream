@@ -38,4 +38,4 @@ REFRESH_TOKEN_SECRET = enter token secret
 
 - Main branch is the development branch
 - Please create a branch for all the changes/features you work on
-- Once you done with your change/feature, create a pull request and only merges when it is approved
+- Once you done with your change/feature, create a pull request and only merge to main branch when it is approved
