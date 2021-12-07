@@ -33,3 +33,9 @@ REFRESH_TOKEN_SECRET = enter token secret
 - Run `npm start` in both tabs
 - The server would be running on port 2000
 - The client would run on port 3000, and you would be automatically be redirected to the page after starting the app on the UI
+
+## Branching
+
+- main branch is the development branch
+- Please create a branch for all the changes/features you work on
+- Once you done with your change/feature, create a pull request and only merges when it is approved
